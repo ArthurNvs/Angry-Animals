@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbunwhns2e4vv"]
+
+[ext_resource type="Script" path="res://scenes/tester/Bird.gd" id="1_k8wpc"]
+[ext_resource type="Texture2D" uid="uid://btwrrr0aciin2" path="res://icon.svg" id="1_vg63s"]
+[ext_resource type="Texture2D" uid="uid://32nebufflykw" path="res://assets/env/elementStone025.png" id="2_lg4io"]
+[ext_resource type="Script" path="res://scenes/tester/Bird2.gd" id="2_ors3d"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5epuq"]
+bounce = 0.4
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dc5tr"]
+radius = 18.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85rjs"]
+size = Vector2(218, 20)
+
+[node name="Tester" type="Node2D"]
+
+[node name="Bird" type="RigidBody2D" parent="."]
+position = Vector2(544, 107)
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_5epuq")
+freeze = true
+script = ExtResource("1_k8wpc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bird"]
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("1_vg63s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bird"]
+shape = SubResource("CircleShape2D_dc5tr")
+
+[node name="Bird2" type="RigidBody2D" parent="."]
+position = Vector2(-7, 136)
+physics_material_override = SubResource("PhysicsMaterial_5epuq")
+freeze = true
+script = ExtResource("2_ors3d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bird2"]
+position = Vector2(549, 139)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("1_vg63s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bird2"]
+position = Vector2(549, 139)
+shape = SubResource("CircleShape2D_dc5tr")
+
+[node name="Timer" type="Timer" parent="Bird2"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(546, 463.079)
+rotation = 1.5708
+scale = Vector2(0.797742, 1)
+texture = ExtResource("2_lg4io")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(545, 445)
+shape = SubResource("RectangleShape2D_85rjs")
+
+[connection signal="input_event" from="Bird" to="Bird" method="_on_input_event"]
+[connection signal="timeout" from="Bird2/Timer" to="Bird2" method="_on_timer_timeout"]

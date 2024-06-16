@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://ffdvslxl0j4f"]
+
+[ext_resource type="Script" path="res://scenes/animal/animal.gd" id="1_fp6qf"]
+[ext_resource type="Texture2D" uid="uid://btwrrr0aciin2" path="res://icon.svg" id="1_mkr62"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c4v8h"]
+
+[node name="Animal" type="RigidBody2D"]
+input_pickable = true
+freeze = true
+script = ExtResource("1_fp6qf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.46, 0.46)
+texture = ExtResource("1_mkr62")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_c4v8h")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(1.24, 1.2)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -29.0
+offset_top = -54.0
+offset_right = 26.0
+offset_bottom = -31.0
+scale = Vector2(1.04, 0.996734)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "DEBUG"
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
