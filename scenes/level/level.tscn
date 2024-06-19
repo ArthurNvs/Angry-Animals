@@ -13,7 +13,7 @@ scale = Vector2(1.2, 1.2)
 texture = ExtResource("1_vf5eb")
 
 [node name="AnimalStart" type="Marker2D" parent="."]
-position = Vector2(702, 153)
+position = Vector2(116, 301)
 
 [node name="Water" parent="." instance=ExtResource("2_yw1tc")]
 z_index = 1
