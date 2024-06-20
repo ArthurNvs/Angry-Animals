@@ -9,6 +9,10 @@ var _level_selected: int = 1
 var _level_scores: Dictionary = {}
 
 
+func _ready():
+	load_from_disk()
+
+
 func set_level_selected(ls: int) -> void:
 	_level_selected = ls
 
@@ -26,6 +30,7 @@ func set_level_score(score: int, level: String) -> void:
 	check_and_add(level)
 	if score < _level_scores[level]:
 		_level_scores[level] = score
+		save_to_disk()
 
 
 func get_best_level_score(level: String) -> int:
@@ -35,7 +40,7 @@ func get_best_level_score(level: String) -> int:
 
 func save_to_disk() -> void:
 	var file = FileAccess.open(SCORES_PATH, FileAccess.WRITE)
-	var score_json_str = JSON.stringfy(_level_scores)
+	var score_json_str = JSON.stringify(_level_scores)
 	file.store_string(score_json_str)
 
 
@@ -45,4 +50,4 @@ func load_from_disk() -> void:
 		save_to_disk()
 	else:
 		var data = file.get_as_text()
-		_level_scores = JSON.parse_string_data(data)
+		_level_scores = JSON.parse_string(data)
