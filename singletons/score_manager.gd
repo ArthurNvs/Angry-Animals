@@ -31,3 +31,18 @@ func set_level_score(score: int, level: String) -> void:
 func get_best_level_score(level: String) -> int:
 	check_and_add(level)
 	return _level_scores[level]
+
+
+func save_to_disk() -> void:
+	var file = FileAccess.open(SCORES_PATH, FileAccess.WRITE)
+	var score_json_str = JSON.stringfy(_level_scores)
+	file.store_string(score_json_str)
+
+
+func load_from_disk() -> void:
+	var file = FileAccess.open(SCORES_PATH, FileAccess.READ)
+	if file == null:
+		save_to_disk()
+	else:
+		var data = file.get_as_text()
+		_level_scores = JSON.parse_string_data(data)
