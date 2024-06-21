@@ -6,4 +6,5 @@
 [node name="Level" instance=ExtResource("1_43m8n")]
 
 [node name="Cup" parent="." index="3" instance=ExtResource("2_2pdk7")]
-position = Vector2(347, 465)
+position = Vector2(566, 438)
+rotation = -0.389208

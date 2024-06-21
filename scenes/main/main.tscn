@@ -1,16 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bms5b3pqjpnas"]
+[gd_scene load_steps=5 format=3 uid="uid://bms5b3pqjpnas"]
 
 [ext_resource type="Texture2D" uid="uid://cw7wfod1rhpvq" path="res://assets/env/MainBG.png" id="1_hnqpb"]
 [ext_resource type="PackedScene" uid="uid://bfagegu5o7hkm" path="res://scenes/level_button/level_button.tscn" id="2_yjp8s"]
-[ext_resource type="FontFile" uid="uid://b1o5ho26jxrxi" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="3_wpt2j"]
+[ext_resource type="LabelSettings" uid="uid://dkhvtsx5c2nbj" path="res://assets/lg_96_blue.tres" id="3_ewys7"]
 [ext_resource type="AudioStream" uid="uid://bsoa7u8jvg6xc" path="res://assets/audio/birdsong.wav" id="4_grl4f"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_watkt"]
-font = ExtResource("3_wpt2j")
-font_size = 96
-font_color = Color(0, 0.766441, 0.76833, 1)
-shadow_size = 8
-shadow_color = Color(0, 0, 0, 0.435294)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -54,6 +47,10 @@ level_number = 2
 layout_mode = 2
 level_number = 3
 
+[node name="LevelButton4" parent="HBoxContainer" instance=ExtResource("2_yjp8s")]
+layout_mode = 2
+level_number = 4
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -64,13 +61,13 @@ offset_right = 353.5
 offset_bottom = 117.0
 grow_horizontal = 2
 rotation = 0.0523599
-theme_override_constants/margin_top = 24
+theme_override_constants/margin_top = 64
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "ANGRY ANIMALS"
-label_settings = SubResource("LabelSettings_watkt")
+label_settings = ExtResource("3_ewys7")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_grl4f")
